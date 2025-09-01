@@ -1,57 +1,89 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const navItemClasses = "font-medium transition-colors px-3 py-2 rounded-lg";
+
   return (
     <nav className="fixed top-0 left-0 w-full bg-white/70 backdrop-blur-lg shadow-md z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
-        <Link
+        <NavLink
           to="/"
           className="text-2xl font-bold text-blue-600 hover:text-green-500 transition-colors"
         >
           🌦️ WeatherApp
-        </Link>
+        </NavLink>
 
         {/* Desktop Links */}
-        <div className="hidden sm:flex space-x-6">
-          <Link
+        <div className="hidden sm:flex space-x-4">
+          <NavLink
             to="/"
-            className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            className={({ isActive }) =>
+              `${navItemClasses} ${
+                isActive
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-700 hover:text-blue-600"
+              }`
+            }
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/Weather"
-            className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            className={({ isActive }) =>
+              `${navItemClasses} ${
+                isActive
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-700 hover:text-blue-600"
+              }`
+            }
           >
             Get Weather
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/About"
-            className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            className={({ isActive }) =>
+              `${navItemClasses} ${
+                isActive
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-700 hover:text-blue-600"
+              }`
+            }
           >
             About
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/Contact"
-            className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            className={({ isActive }) =>
+              `${navItemClasses} ${
+                isActive
+                  ? "bg-blue-500 text-white"
+                  : "text-gray-700 hover:text-blue-600"
+              }`
+            }
           >
             Contact Us
-          </Link>
+          </NavLink>
         </div>
 
         {/* Login Button (desktop only) */}
         <div className="hidden sm:block">
-          <Link
+          <NavLink
             to="/login"
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold shadow-lg hover:scale-105 active:scale-95 transition-transform"
+            className={({ isActive }) =>
+              `px-4 py-2 rounded-xl font-semibold shadow-lg transition-transform ${
+                isActive
+                  ? "bg-green-600 text-white"
+                  : "bg-gradient-to-r from-blue-500 to-green-500 text-white hover:scale-105 active:scale-95"
+              }`
+            }
           >
             Login
-          </Link>
+          </NavLink>
         </div>
 
         {/* Hamburger Button */}
@@ -66,41 +98,28 @@ function NavBar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="sm:hidden bg-white/95 backdrop-blur-lg shadow-md px-6 py-4 space-y-4">
-          <Link
-            to="/"
-            className="block text-gray-700 font-medium hover:text-blue-600 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            to="/Weather"
-            className="block text-gray-700 font-medium hover:text-blue-600 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Get Weather
-          </Link>
-          <Link
-            to="/About"
-            className="block text-gray-700 font-medium hover:text-blue-600 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            About
-          </Link>
-          <Link
-            to="/Contact"
-            className="block text-gray-700 font-medium hover:text-blue-600 transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact Us
-          </Link>
-          <Link
-            to="/login"
-            className="block px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold shadow-lg hover:scale-105 active:scale-95 transition-transform"
-            onClick={() => setIsOpen(false)}
-          >
-            Login
-          </Link>
+          {[
+            { path: "/", label: "Home" },
+            { path: "/Weather", label: "Get Weather" },
+            { path: "/About", label: "About" },
+            { path: "/Contact", label: "Contact Us" },
+            { path: "/login", label: "Login" },
+          ].map(({ path, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `block px-3 py-2 rounded-lg font-medium transition-colors ${
+                  isActive
+                    ? "bg-blue-500 text-white"
+                    : "text-gray-700 hover:text-blue-600"
+                }`
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              {label}
+            </NavLink>
+          ))}
         </div>
       )}
     </nav>

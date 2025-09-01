@@ -7,6 +7,7 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Getweather from "./pages/Getweather.jsx";
+import PageNotFound from "./pages/404.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/Weather",
         element: <Getweather />,
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
       },
     ],
   },
