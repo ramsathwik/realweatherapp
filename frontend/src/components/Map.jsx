@@ -1,9 +1,6 @@
 import { MapContainer, TileLayer } from "react-leaflet";
-
 import "leaflet/dist/leaflet.css";
-
 import useLocation from "../hooks/GetLocation";
-
 import FlyToLocation from "../utils/Flytolocation";
 import Locationhandler from "./LocationHandler";
 
@@ -11,7 +8,7 @@ function GetMap() {
   let location = useLocation();
 
   return (
-    <div className="w-full h-[400px] md:h-[500px] rounded-2xl shadow-lg overflow-hidden">
+    <div className="w-full h-full rounded-2xl overflow-hidden shadow-inner">
       <MapContainer
         center={location || [20.5937, 78.9629]} // Default India
         zoom={5}

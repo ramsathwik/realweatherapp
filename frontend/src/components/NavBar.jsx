@@ -8,7 +8,7 @@ function NavBar() {
   const navItemClasses = "font-medium transition-colors px-3 py-2 rounded-lg";
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white/70 backdrop-blur-lg shadow-md z-50">
+    <nav className="fixed top-0 left-0 w-full bg-white/70 backdrop-blur-lg shadow-md z-[9999]">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
         <NavLink
