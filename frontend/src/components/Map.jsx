@@ -8,14 +8,13 @@ function GetMap() {
   let location = useLocation();
 
   return (
-    <div className="w-full h-full rounded-2xl overflow-hidden shadow-inner">
+    <div className="w-full h-[300px] sm:h-[500px] rounded-2xl overflow-hidden shadow-inner">
       <MapContainer
         center={location || [20.5937, 78.9629]} // Default India
         zoom={5}
         scrollWheelZoom={true}
         className="w-full h-full"
       >
-        {/* Satellite imagery */}
         <TileLayer
           url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
           attribution="© Google Maps"
