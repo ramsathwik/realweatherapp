@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 function SearchPanel() {
+  let navigate = useNavigate();
   function formhandler(e) {
     e.preventDefault();
+    navigate("/dashboard");
   }
 
   return (

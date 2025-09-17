@@ -8,34 +8,44 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Getweather from "./pages/Getweather.jsx";
 import PageNotFound from "./pages/404.jsx";
-const router = createBrowserRouter([
+import WeatherDetails from "./pages/WeatherDetails.jsx";
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/About",
+          element: <About />,
+        },
+        {
+          path: "/Contact",
+          element: <Contact />,
+        },
+        {
+          path: "/Weather",
+          element: <Getweather />,
+        },
+        {
+          path: "/dashboard",
+          element: <WeatherDetails></WeatherDetails>,
+        },
+        {
+          path: "*",
+          element: <PageNotFound />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/About",
-        element: <About />,
-      },
-      {
-        path: "/Contact",
-        element: <Contact />,
-      },
-      {
-        path: "/Weather",
-        element: <Getweather />,
-      },
-      {
-        path: "*",
-        element: <PageNotFound />,
-      },
-    ],
-  },
-]);
+    basename: import.meta.env.MODE === "production" ? "/realweatherapp" : "/",
+  }
+);
 
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
